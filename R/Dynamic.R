@@ -29,30 +29,47 @@ knapsack_dynamic <- function(x,W) {
   else if(!is.numeric(W) || W < 0)
     stop("W must be a positive numeric value")
   else {
-    n <- nrow(x)
-    m <- matrix(0, nrow = n+1, ncol = W+1)
-    elements <- rep(0,W+1)
+    w<-x$w
+    v<-x$v
+    lapply(w,function(x){stopifnot(is.integer(x))})
 
-    for (i in 2:(n+1)) {
-      for (j in 1:(W+1)) {
-        if (x$w[i-1] > j)
-          m[i, j] <- m[i-1, j]
-        else
-          m[i, j] <- max(m[i-1, j], m[i-1, j-x$w[i-1]] + x$v[i-1])
+
+    n<-nrow(x)
+    m<-matrix(rep(0,times=(n+1)*(W+1)),nrow=n+1)
+    #weights as columns. items as rows
+    for (i in 2:(n+1)){
+      for (j in 2:(W+1)){
+        if (w[i-1]<=j){                                       #we could use
+          m[i,j]<-max(m[i-1,j],m[i-1,j-w[i-1]]+v[i-1])  #this part
+        } else{                                               #as a function
+          m[i,j]<-m[i-1,j]                              #and call
+        }                                                     #with an apply
       }
     }
+    value<-round(m[nrow(m),ncol(m)])
+    #we have our m-matrix. Next is to find the way back to see what elements
+    #constitutes this solution.
 
-    result <- c()
-    limit <- W+1
-    for (j in (n+1):2){
-      was_added <- m[j,limit] != m[j-1,limit]
+    #!!!! I didnt solve how to find the way back. This code is taken and adapted from
+    #http://www.statsblogs.com/2012/10/30/reinforcement-learning-in-r-an-introduction-to-dynamic-programming/
+    #Dont know if we can use that?
+    amount = rep(0, length(w))
+    a = m[nrow(m), ncol(m)]
+    j = length(w)
+    Y = W
 
-      if (was_added) {
-        result <- append(result, j-1)
-        limit <- limit - x$w[j-1]
+    while(a > 0) {
+      while(m[j+1,Y+1] == a) {
+        j = j - 1
       }
+      j = j + 1
+      amount[j] = 1
+      Y = Y - w[j]
+      j = j - 1
+      a = m[j+1,Y+1]
     }
-
-    return(list(value = m[n+1,W+1], elements = sort(result)))
+    elements<-amount*c(1:length(amount))
+    elements<-elements[elements>0]
+    return(list(value=value,elements=elements))
   }
 }
