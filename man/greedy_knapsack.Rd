@@ -18,8 +18,14 @@ A list cointaining a value and a element
 The 'greedy_knapsack' function is a approach that use the a heuristic or approximation for knapsack package problem.
 }
 \examples{
-greedy_knapsack(x = knapsack_objects[1:800,], W = 3500)
-
+set.seed(42)
+n <- 2000
+knapsack_objects <-
+ data.frame(
+   w=sample(1:4000, size = n, replace = TRUE),
+  v=runif(n = n, 0, 10000)
+ )
+greedy_knapsack(x = knapsack_objects[1:8,], W = 3500)
 }
 \references{
 \url{https://en.wikipedia.org/wiki/Knapsack_problem#Greedy_approximation_algorithm}

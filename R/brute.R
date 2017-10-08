@@ -1,20 +1,20 @@
-#'  @title brute_force_knapsack
-#'  @param x is a matrix containing the weights and values
-#'  @param W a numeric string.
-#'  @return a list with the _value_ of the optimally packed knapsack and the _elements_ that gives this value.
-#'  @description uses brute force, i.e. tests all combinations and finds the one with max value under the restriction total weight<W.
-#'  @references \url{https://en.wikipedia.org/wiki/Knapsack_problem}
-#'  @export
-#'  @examples
-#'  set.seed(42)
-#'  n <- 16
-#'  knapsack_objects <-
-#'    data.frame(
-#'      w=sample(1:4000, size = n, replace = TRUE),
-#'      v=runif(n = n, 0, 10000)
+#' @title brute_force_knapsack
+#' @description tests all combinations and finds the one with max value under the restriction total weight<W.
+#' @param x is a matrix containing the weights and values
+#' @param W a numeric string.
+#' @return a list with the _value_ of the optimally packed knapsack and the _elements_ that gives this value.
+#' @references \url{https://en.wikipedia.org/wiki/Knapsack_problem}
+#' @export
+#' @examples
+#' set.seed(42)
+#'n <- 2000
+#'knapsack_objects <-
+#'  data.frame(
+#'    w=sample(1:4000, size = n, replace = TRUE),
+#'   v=runif(n = n, 0, 10000)
 #'  )
-#' brute_force_knapsack(x = knapsack_objects[1:800,], W = 3500)
-#'
+#' brute_force_knapsack(x = knapsack_objects[1:8,], W = 3500)
+
 
 
 
