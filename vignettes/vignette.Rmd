@@ -33,8 +33,8 @@ library(parallel)
 
 **Brute force search**
 ```{r}
-brute_force_knapsack(x = knapsack_objects[1:16,], W = 2000)
-st <- system.time(bfk <- brute_force_knapsack(x = knapsack_objects[1:16,], W = 2000))
+brute_force_knapsack(x = knapsack_objects[1:16,], W = 3500)
+st <- system.time(bfk <- brute_force_knapsack(x = knapsack_objects[1:16,], W = 3500))
 st
 ```
 
@@ -52,6 +52,6 @@ system.time(greedy_knapsack(x = knapsack_objects[1:16,], W = 2000))
 
 **Parallel brute force search**
 ```{r}
-brute_force_knapsack_para(x = knapsack_objects[1:16,], W = 2000)
-system.time(brute_force_knapsack_para(x = knapsack_objects[1:16,], W = 2000))
+brute_force_knapsack_para(x = knapsack_objects[1:16,], W = 3500)
+system.time(brute_force_knapsack_para(x = knapsack_objects[1:16,], W = 3500))
 ```

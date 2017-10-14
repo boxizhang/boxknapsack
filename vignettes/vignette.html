@@ -83,19 +83,20 @@ knapsack_objects &lt;-
 <span class="dt">w=</span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4000</span>, <span class="dt">size =</span> n, <span class="dt">replace =</span> <span class="ot">TRUE</span>),
 <span class="dt">v=</span><span class="kw">runif</span>(<span class="dt">n =</span> n, <span class="dv">0</span>, <span class="dv">10000</span>)
 )
+
 <span class="kw">library</span>(boxknapsack)
 <span class="kw">library</span>(parallel)</code></pre></div>
 <p><strong>Brute force search</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">brute_force_knapsack</span>(<span class="dt">x =</span> knapsack_objects[<span class="dv">1</span><span class="op">:</span><span class="dv">16</span>,], <span class="dt">W =</span> <span class="dv">2000</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">brute_force_knapsack</span>(<span class="dt">x =</span> knapsack_objects[<span class="dv">1</span><span class="op">:</span><span class="dv">16</span>,], <span class="dt">W =</span> <span class="dv">3500</span>)</code></pre></div>
 <pre><code>## $value
-## [1] 15428
+## [1] 22160
 ## 
 ## $elements
-## [1] 3 8</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">st &lt;-<span class="st"> </span><span class="kw">system.time</span>(bfk &lt;-<span class="st"> </span><span class="kw">brute_force_knapsack</span>(<span class="dt">x =</span> knapsack_objects[<span class="dv">1</span><span class="op">:</span><span class="dv">16</span>,], <span class="dt">W =</span> <span class="dv">2000</span>))
+## [1]  3  8 14</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">st &lt;-<span class="st"> </span><span class="kw">system.time</span>(bfk &lt;-<span class="st"> </span><span class="kw">brute_force_knapsack</span>(<span class="dt">x =</span> knapsack_objects[<span class="dv">1</span><span class="op">:</span><span class="dv">16</span>,], <span class="dt">W =</span> <span class="dv">3500</span>))
 st</code></pre></div>
 <pre><code>##    user  system elapsed 
-##   1.170   0.012   1.189</code></pre>
+##   1.103   0.006   1.113</code></pre>
 <p><strong>Dynamic programming</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">knapsack_dynamic</span>(<span class="dt">x =</span> knapsack_objects[<span class="dv">1</span><span class="op">:</span><span class="dv">16</span>,], <span class="dt">W =</span> <span class="dv">2000</span>)</code></pre></div>
 <pre><code>## $value
@@ -105,7 +106,7 @@ st</code></pre></div>
 ## [1] 3 8</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>(<span class="kw">knapsack_dynamic</span>(<span class="dt">x =</span> knapsack_objects[<span class="dv">1</span><span class="op">:</span><span class="dv">16</span>,], <span class="dt">W =</span> <span class="dv">2000</span>))</code></pre></div>
 <pre><code>##    user  system elapsed 
-##   0.066   0.000   0.066</code></pre>
+##   0.067   0.001   0.066</code></pre>
 <p><strong>Greedy heuristic</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">greedy_knapsack</span>(<span class="dt">x =</span> knapsack_objects[<span class="dv">1</span><span class="op">:</span><span class="dv">16</span>,], <span class="dt">W =</span> <span class="dv">2000</span>)</code></pre></div>
 <pre><code>## $value
@@ -115,17 +116,17 @@ st</code></pre></div>
 ## [1]  8 14</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>(<span class="kw">greedy_knapsack</span>(<span class="dt">x =</span> knapsack_objects[<span class="dv">1</span><span class="op">:</span><span class="dv">16</span>,], <span class="dt">W =</span> <span class="dv">2000</span>))</code></pre></div>
 <pre><code>##    user  system elapsed 
-##   0.000   0.000   0.001</code></pre>
+##       0       0       0</code></pre>
 <p><strong>Parallel brute force search</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">brute_force_knapsack_para</span>(<span class="dt">x =</span> knapsack_objects[<span class="dv">1</span><span class="op">:</span><span class="dv">16</span>,], <span class="dt">W =</span> <span class="dv">2000</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">brute_force_knapsack_para</span>(<span class="dt">x =</span> knapsack_objects[<span class="dv">1</span><span class="op">:</span><span class="dv">16</span>,], <span class="dt">W =</span> <span class="dv">3500</span>)</code></pre></div>
 <pre><code>## $value
-## [1] 15427.81
+## [1] 22160.22
 ## 
 ## $elements
-## [1] 3 8</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>(<span class="kw">brute_force_knapsack_para</span>(<span class="dt">x =</span> knapsack_objects[<span class="dv">1</span><span class="op">:</span><span class="dv">16</span>,], <span class="dt">W =</span> <span class="dv">2000</span>))</code></pre></div>
+## [1]  3  8 14</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>(<span class="kw">brute_force_knapsack_para</span>(<span class="dt">x =</span> knapsack_objects[<span class="dv">1</span><span class="op">:</span><span class="dv">16</span>,], <span class="dt">W =</span> <span class="dv">3500</span>))</code></pre></div>
 <pre><code>##    user  system elapsed 
-##   0.064   0.021   0.867</code></pre>
+##   0.080   0.023   0.883</code></pre>
 
 
 
