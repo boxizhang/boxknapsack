@@ -1,0 +1,56 @@
+---
+title: "boxknapsack"
+author: "Boxi Zhang, Priya Pullolickal"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{boxknapsack}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEngine{knitr::knitr}
+  %\VignetteEncoding{UTF-8}
+---
+
+The boxknapsack package contains three different algorithm to solve the knapsack problem:
+- brute force
+- dynamic programming 
+- greedy approach
+
+The data we will use is generated in the following way:
+
+```{r}
+set.seed(42)
+n <- 2000
+knapsack_objects <-
+data.frame(
+w=sample(1:4000, size = n, replace = TRUE),
+v=runif(n = n, 0, 10000)
+)
+library(boxknapsack)
+library(parallel)
+```
+
+
+**Brute force search**
+```{r}
+brute_force_knapsack(x = knapsack_objects[1:16,], W = 2000)
+st <- system.time(bfk <- brute_force_knapsack(x = knapsack_objects[1:16,], W = 2000))
+st
+```
+
+**Dynamic programming**
+```{r}
+knapsack_dynamic(x = knapsack_objects[1:16,], W = 2000)
+system.time(knapsack_dynamic(x = knapsack_objects[1:16,], W = 2000))
+```
+
+**Greedy heuristic**
+```{r}
+greedy_knapsack(x = knapsack_objects[1:16,], W = 2000)
+system.time(greedy_knapsack(x = knapsack_objects[1:16,], W = 2000))
+```
+
+**Parallel brute force search**
+```{r}
+brute_force_knapsack_para(x = knapsack_objects[1:16,], W = 2000)
+system.time(brute_force_knapsack_para(x = knapsack_objects[1:16,], W = 2000))
+```

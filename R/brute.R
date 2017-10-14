@@ -1,10 +1,10 @@
 #' @title brute_force_knapsack
-#' @description tests all combinations and finds the one with max value under the restriction total weight<W.
+#'
+#' @description the 'brute_force_knapsack' function tests all combinations and finds the one with max value under the restriction total weight<W.
 #' @param x is a matrix containing the weights and values
 #' @param W a numeric string.
 #' @return a list with the _value_ of the optimally packed knapsack and the _elements_ that gives this value.
 #' @references \url{https://en.wikipedia.org/wiki/Knapsack_problem}
-#' @export
 #' @examples
 #' set.seed(42)
 #'n <- 2000
@@ -14,7 +14,7 @@
 #'   v=runif(n = n, 0, 10000)
 #'  )
 #' brute_force_knapsack(x = knapsack_objects[1:8,], W = 3500)
-
+#' @export
 
 
 
@@ -34,14 +34,18 @@ brute_force_knapsack<-function(x, W){
     else {
           len<-length(x$w)
 
-          Box<-sapply(c(1:2^len),function(x){as.integer(intToBits(x)[1:len])})
+          Box<-sapply(c(1:2^len),function(x){
+            as.integer(intToBits(x)[1:len])
+            })
           values<-c()
           max_val<-function(col){
                 OK_weights<-c()
                 weight<-t(x$w)%*%col
                 if (weight<=W){
                         values<-c(values,t(x$v)%*%col)
-                } else { values<-c(values,0)}
+                } else {
+                  values<-c(values,0)
+                  }
                 return(values)
         }
         m<-apply(Box,2,max_val)

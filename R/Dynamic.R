@@ -36,23 +36,17 @@ knapsack_dynamic <- function(x,W) {
 
     n<-nrow(x)
     m<-matrix(rep(0,times=(n+1)*(W+1)),nrow=n+1)
-    #weights as columns. items as rows
+
     for (i in 2:(n+1)){
       for (j in 2:(W+1)){
-        if (w[i-1]<=j){                                       #we could use
-          m[i,j]<-max(m[i-1,j],m[i-1,j-w[i-1]]+v[i-1])  #this part
-        } else{                                               #as a function
-          m[i,j]<-m[i-1,j]                              #and call
-        }                                                     #with an apply
+        if (w[i-1]<=j){
+          m[i,j]<-max(m[i-1,j],m[i-1,j-w[i-1]]+v[i-1])
+        } else{
+          m[i,j]<-m[i-1,j]
+        }
       }
     }
     value<-round(m[nrow(m),ncol(m)])
-    #we have our m-matrix. Next is to find the way back to see what elements
-    #constitutes this solution.
-
-    #!!!! I didnt solve how to find the way back. This code is taken and adapted from
-    #http://www.statsblogs.com/2012/10/30/reinforcement-learning-in-r-an-introduction-to-dynamic-programming/
-    #Dont know if we can use that?
     amount = rep(0, length(w))
     a = m[nrow(m), ncol(m)]
     j = length(w)
