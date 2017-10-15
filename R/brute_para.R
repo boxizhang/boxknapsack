@@ -33,23 +33,23 @@ brute_force_knapsack_para<-function(x, W){
   else {
     len<-length(x$w)
 
-    cl <- makeCluster(cores)
+    cl <- parallel::makeCluster(cores)
 
-    clusterExport(cl, c("x"), envir = environment())
-    Box <- parLapplyLB(cl, 1:len, fun =  function(y) {
+    parallel::clusterExport(cl, c("x"), envir = environment())
+    Box <- parallel::parLapplyLB(cl, 1:len, fun =  function(y) {
         combn(rownames(x), y, paste0, collapse = " ")
 
     })
-    weights <- parLapplyLB(cl, 1:len, fun =  function(y) {
+    weights <- parallel::parLapplyLB(cl, 1:len, fun =  function(y) {
         combn(x$w, y, sum)
 
     })
-    values<- parLapplyLB(cl,1:len, fun =  function(y) {
+    values<- parallel::parLapplyLB(cl,1:len, fun =  function(y) {
         combn(x$v, y , sum)
 
     })
 
-    stopCluster(cl)
+    parallel::stopCluster(cl)
 
     Box <- unlist(Box)
     weights <- unlist(weights)

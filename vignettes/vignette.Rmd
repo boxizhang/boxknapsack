@@ -6,9 +6,15 @@ output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{boxknapsack}
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEngine{knitr::knitr}
   %\VignetteEncoding{UTF-8}
 ---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
 
 The boxknapsack package contains three different algorithm to solve the knapsack problem:
 - brute force
@@ -27,7 +33,6 @@ v=runif(n = n, 0, 10000)
 )
 
 library(boxknapsack)
-library(parallel)
 ```
 
 
