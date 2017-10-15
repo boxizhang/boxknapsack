@@ -1,8 +1,8 @@
 Package: boxknapsack
 Title: Three different algorithm for knapsack problem
 Version: 0.0.0.9000
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Authors@R: person("Boxi", "Zhang", role = c("aut","cre"),email = "bossyzhang@gmail.com")
+Description: Three different algorithm for knapsack problem
 Depends: R (>= 3.2.0)
 License: GPL
 Imports: parallel

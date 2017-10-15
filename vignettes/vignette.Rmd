@@ -39,12 +39,12 @@ library(boxknapsack)
 **Brute force search**
 ```{r}
 brute_force_knapsack(x = knapsack_objects[1:16,], W = 3500)
-st <- system.time(bfk <- brute_force_knapsack(x = knapsack_objects[1:16,], W = 3500))
+st <- system.time(brute_force_knapsack(x = knapsack_objects[1:16,], W = 3500))
+st
+brute_force_knapsack(x = knapsack_objects[1:16,], W = 3500, parallel = TRUE)
+st <- system.time(brute_force_knapsack(x = knapsack_objects[1:16,], W = 3500, parallel = TRUE))
 st
 
-brute_force_knapsack_para(x = knapsack_objects[1:16,], W = 3500)
-pa<-system.time(brute_force_knapsack_para(x = knapsack_objects[1:16,], W = 3500))
-pa
 ```
 
 
