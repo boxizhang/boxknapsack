@@ -17,7 +17,8 @@ A list cointaining a value and a element
 \description{
 The 'greedy_knapsack' function is a approach that use the a heuristic or approximation for knapsack package problem.
 }
-\examples{
+\references{
+\url{https://en.wikipedia.org/wiki/Knapsack_problem#Greedy_approximation_algorithm}
 set.seed(42)
 n <- 2000
 knapsack_objects <-
@@ -26,7 +27,4 @@ knapsack_objects <-
   v=runif(n = n, 0, 10000)
  )
 greedy_knapsack(x = knapsack_objects[1:8,], W = 3500)
-}
-\references{
-\url{https://en.wikipedia.org/wiki/Knapsack_problem#Greedy_approximation_algorithm}
 }

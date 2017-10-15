@@ -17,7 +17,8 @@ A list cointaining a value and a element
 \description{
 The 'knapsack_dynamic' function is a approach that use the a heuristic or approximation for knapsack package problem#' @param x is a 2dim matrix containing the weights and values.
 }
-\examples{
+\references{
+\url{https://en.wikipedia.org/wiki/Knapsack_problem#Dynamic_programming_in-advance_algorithm}
 set.seed(42)
 n <- 2000
 knapsack_objects <-
@@ -26,7 +27,4 @@ knapsack_objects <-
   v=runif(n = n, 0, 10000)
  )
 knapsack_dynamic(x = knapsack_objects[1:800,], W = 3500)
-}
-\references{
-\url{https://en.wikipedia.org/wiki/Knapsack_problem#Dynamic_programming_in-advance_algorithm}
 }

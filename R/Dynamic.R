@@ -5,7 +5,7 @@
 #' @param W a numeric string.
 #' @return A list cointaining a value and a element
 #' @references \url{https://en.wikipedia.org/wiki/Knapsack_problem#Dynamic_programming_in-advance_algorithm}
-#' @examples
+
 #' set.seed(42)
 #'n <- 2000
 #'knapsack_objects <-

@@ -55,7 +55,7 @@ brute_force_knapsack<-function(x, W, parallel = FALSE){
   return(list(value=round(max(m)),elements=elements))
   } else {
     requireNamespace("parallel")
-    cores<-parallel::detectCores()
+    cores<-parallel::detectCores()-3
     len<-length(x$w)
 
     cl <- parallel::makeCluster(cores)
