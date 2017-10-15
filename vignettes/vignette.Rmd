@@ -1,10 +1,10 @@
 ---
 title: "boxknapsack"
-author: "Boxi Zhang, Priya Pullolickal"
+author: "Boxi Zhang"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{boxknapsack}
+  %\VignetteIndexEntry{Vignette Title}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -17,20 +17,20 @@ knitr::opts_chunk$set(
 ```
 
 The boxknapsack package contains three different algorithm to solve the knapsack problem:
-- brute force
+  - brute force
 - dynamic programming 
 - greedy approach
 
 The data we will use is generated in the following way:
-
+  
 ```{r}
 set.seed(42)
 n <- 2000
 knapsack_objects <-
-data.frame(
-w=sample(1:4000, size = n, replace = TRUE),
-v=runif(n = n, 0, 10000)
-)
+  data.frame(
+    w=sample(1:4000, size = n, replace = TRUE),
+    v=runif(n = n, 0, 10000)
+  )
 
 library(boxknapsack)
 ```
