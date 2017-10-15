@@ -18,6 +18,7 @@
 
 
 brute_force_knapsack_para<-function(x, W){
+  requireNamespace("parallel")
   cores<-parallel::detectCores()-2
 
   if (!is.data.frame(x))
