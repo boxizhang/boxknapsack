@@ -7,7 +7,7 @@
 #' @references \url{https://en.wikipedia.org/wiki/Knapsack_problem}
 #' @export
 #' @importFrom utils combn
-#' @import parallel lineprof
+#' @import parallel
 
 # set.seed(42)
 # n <- 2000
